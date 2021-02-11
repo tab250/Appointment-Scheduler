@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+   <children>
+      <Label layoutX="392.0" layoutY="3.0" text="Scheduler">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="5.0" layoutY="356.0" prefHeight="310.0" prefWidth="840.0" style="-fx-border-radius: 15; -fx-border-color: gray;">
+         <children>
+            <TableView fx:id="AppointmentTblView" layoutX="14.0" layoutY="25.0" prefHeight="230.0" prefWidth="732.0">
+              <columns>
+                <TableColumn fx:id="AppIDCol" prefWidth="50.0" text="App. ID" />
+                <TableColumn fx:id="AppTitleCol" prefWidth="75.0" text="Title" />
+                  <TableColumn fx:id="AppDescriptionCol" prefWidth="90.0" text="Description" />
+                  <TableColumn fx:id="AppLocationCol" prefWidth="75.0" text="Location" />
+                  <TableColumn fx:id="AppContactCol" prefWidth="75.0" text="Contact" />
+                  <TableColumn fx:id="AppTypeCol" prefWidth="75.0" text="Type" />
+                  <TableColumn fx:id="AppStartCol" prefWidth="95.0" text="Start Date/Time" />
+                  <TableColumn fx:id="AppEndCol" prefWidth="95.0" text="End Date/Time" />
+                  <TableColumn fx:id="AppCustomerIDCol" prefWidth="50.0" text="Cust. ID" />
+                  <TableColumn fx:id="AppUserIDCol" prefWidth="50.0" text="User ID" />
+              </columns>
+            </TableView>
+            <VBox alignment="CENTER" layoutX="747.0" layoutY="52.0" prefHeight="201.0" prefWidth="89.0" spacing="20.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="79.0" prefWidth="87.0" text="Display Appointments within next:" textAlignment="CENTER" wrapText="true" />
+                  <RadioButton fx:id="WeeklyBtn" mnemonicParsing="false" onAction="#onActionSortByWeek" text="Week">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="SortBy" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="MonthlyBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionSortByMonth" text="Month" toggleGroup="$SortBy" />
+                  <Button fx:id="clearAppSortBtn" mnemonicParsing="false" onAction="#onActionClearAppSort" text="Clear" />
+               </children>
+            </VBox>
+            <HBox layoutX="264.0" layoutY="269.0" prefHeight="20.0" prefWidth="230.0" spacing="27.0">
+               <children>
+                  <Button fx:id="AppAddBtn" mnemonicParsing="false" onAction="#onActionAddAppointment" prefWidth="58.5" text="Add" />
+                  <Button fx:id="AppUpdateBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionUpdateAppointment" text="Update" />
+                  <Button fx:id="AppDeleteBtn" layoutX="65.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefWidth="58.5" text="Delete" />
+               </children>
+            </HBox>
+            <Label layoutX="14.0" layoutY="5.0" text="Appointments">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="5.0" layoutY="30.0" prefHeight="310.0" prefWidth="840.0" style="-fx-border-radius: 15; -fx-border-color: gray;">
+         <children>
+            <TableView fx:id="CustomerTblView" layoutX="14.0" layoutY="25.0" prefHeight="230.0" prefWidth="602.0">
+               <columns>
+                  <TableColumn fx:id="CustomerIDCol" prefWidth="50.0" text="ID" />
+                  <TableColumn fx:id="CustomerNameCol" prefWidth="120.0" text="Name" />
+                  <TableColumn fx:id="CustomerAddressCol" prefWidth="120.0" text="Address" />
+                  <TableColumn fx:id="CustomerPostalCol" prefWidth="70.0" text="Postal Code" />
+                  <TableColumn fx:id="CustomerPhoneCol" prefWidth="120.0" text="Phone Number" />
+                  <TableColumn fx:id="CustomerFLDCol" prefWidth="120.0" text="First-Level Division" />
+               </columns>
+            </TableView>
+            <VBox alignment="CENTER" layoutX="626.0" layoutY="53.0" prefHeight="120.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Label alignment="CENTER" text="Sort by:" />
+                  <ComboBox fx:id="SortByCountryCombo" onAction="#onActionSortByCountry" prefWidth="200.0" promptText="Select a Country" />
+                  <ComboBox fx:id="SortByFLDCombo" layoutX="10.0" layoutY="75.0" onAction="#onActionSortByFLD" prefWidth="200.0" promptText="Select a Division" />
+                  <Label text="Clear:" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="76.0">
+                     <children>
+                        <Button fx:id="CountryClearBtn" mnemonicParsing="false" onAction="#clearCountry" text="Country" />
+                        <Button fx:id="DivisionClearBtn" mnemonicParsing="false" onAction="#clearDivision" prefWidth="62.0" text="Division" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox layoutX="199.0" layoutY="269.0" prefHeight="20.0" prefWidth="230.0" spacing="27.0">
+               <children>
+                  <Button fx:id="CustomerAddBtn" mnemonicParsing="false" onAction="#onActionAddCustomer" prefWidth="58.5" text="Add" />
+                  <Button fx:id="CustomerUpdateBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" text="Update" />
+                  <Button fx:id="CustomerDeleteBtn" layoutX="65.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionCustomerDelete" prefWidth="58.5" text="Delete" />
+               </children>
+            </HBox>
+            <Label layoutX="14.0" layoutY="5.0" text="Customers">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <HBox layoutX="635.0" layoutY="1.0" prefHeight="27.0" prefWidth="215.0" spacing="10.0">
+         <children>
+            <Button fx:id="Report1Btn" mnemonicParsing="false" onAction="#onActionDisplayReport1" text="Report 1" />
+            <Button fx:id="Report2Btn" mnemonicParsing="false" onAction="#onActionDisplayReport2" text="Report 2" />
+            <Button fx:id="Report3Btn" mnemonicParsing="false" onAction="#onActionDisplayReport3" text="Report 3" />
+         </children>
+      </HBox>
+      <ListView fx:id="Report3List" layoutX="853.0" layoutY="491.0" prefHeight="175.0" prefWidth="238.0" />
+      <Label layoutX="940.0" layoutY="461.0" text="Report 3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="940.0" layoutY="3.0" text="Report 1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="Report1List" layoutX="853.0" layoutY="30.0" prefHeight="175.0" prefWidth="238.0" />
+      <ListView fx:id="Report2List" layoutX="852.0" layoutY="253.0" prefHeight="175.0" prefWidth="238.0" />
+      <Label layoutX="940.0" layoutY="228.0" text="Report 2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
